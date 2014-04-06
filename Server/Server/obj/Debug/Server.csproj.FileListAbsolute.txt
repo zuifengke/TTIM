@@ -1,0 +1,6 @@
+F:\许婷婷毕设打包\TTIM\Server\Server\bin\Debug\Server.exe.config
+F:\许婷婷毕设打包\TTIM\Server\Server\bin\Debug\Server.exe
+F:\许婷婷毕设打包\TTIM\Server\Server\bin\Debug\Server.pdb
+F:\许婷婷毕设打包\TTIM\Server\Server\obj\Debug\Server.csprojResolveAssemblyReference.cache
+F:\许婷婷毕设打包\TTIM\Server\Server\obj\Debug\Server.exe
+F:\许婷婷毕设打包\TTIM\Server\Server\obj\Debug\Server.pdb
