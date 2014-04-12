@@ -10,6 +10,8 @@ var bSocketCreate;
 var clock;
 var target="";
 var isLogin = false;
+var UserNameDict = {}
+var ClickName = "";
 
  $(document).ready(function(e){
 
@@ -98,14 +100,32 @@ function AddChatText(dInfo){//增加聊天记录
                     '</p></div>'
                 ].join(''));
     $target.scrollTop(99999);
+
+    var iType = dInfo["Type"]
+    if (iType == '3'){
+        console.log(UserNameDict[sUserName])
+        if (!UserNameDict[sUserName])
+        {
+            AddContact(sUserName,'#rightblock_list_ul2')
+            UserNameDict[sUserName] = 1
+            $('#lasttalk').click()
+        }
+    }
+        
 }
 
 //增加联系人
-function AddContact(sName){
+function AddContact(sName,sTarget){
     var sLoginName = sName;
     if(sLoginName=="")
         sLoginName = "";
-    var $rightList=$('#rightblock_list_ul1');
+    var $rightList=$(sTarget);
+    var sUserName = $('#name').val()
+    if (sUserName == sName && sTarget == '#rightblock_list_ul2'){
+        sLoginName = ClickName
+    }
+
+
     $rightList.append(['<li class="lishow" title="',
                         sLoginName,
                         '" onclick="ClickListShow(this)"><a href="#"><span><img src="./img/photo.png" alt="" border="0"/></span><span>',
@@ -114,11 +134,19 @@ function AddContact(sName){
                     ].join(''));
 }
 
+function AddTalkContact(sName){
+    var sLoginName = sName;
+    if(sLoginName=="")
+        sLoginName = "";
+}
+
 //删除联系人
 function RemoveContact(sName){
     var sUserName = $('#name').val()
     if (sUserName == sName){
         var $rightList=$('#rightblock_list_ul1');
+        $rightList.empty()
+        var $rightList=$('#rightblock_list_ul2');
         $rightList.empty()
         ws.close();
         return ;
@@ -148,6 +176,8 @@ function ClickListShow(obj){
     var sText = obj.getElementsByTagName("span")[1].innerHTML
     target = sText;
     $('#IMTitle').text(target);
+    ClickName = target
+    AddTalkContact(target,'#rightblock_list_ul2')
 }
 
 //登录
@@ -197,19 +227,24 @@ function WSonMessage(event) {
 
 function WSonClose() {
     console.log("关闭连接")
-    $('.ds-post-main').css("display","block");
-    $('.loginedMain').css("display","none");
+    Release()
 };
 
 function WSonError() {
     console.log("远程连接中断")
+    Release()
+};
 
+function Release(){
     $('.ds-post-main').css("display","block");
     $('.loginedMain').css("display","none");
 
     var sUserName = $('#name').val()
     RemoveContact(sUserName);
-};
+
+    var $target=$('.leftblock_list');
+    $target.empty()
+}
 /*******************************/
 
 function ParseData(sTest){//解析服务端数据
@@ -225,7 +260,7 @@ function ParseData(sTest){//解析服务端数据
         case "login":
             sName = ParseLoginOrLogout(sTextList);
             if (sName)
-                AddContact(sName);
+                AddContact(sName,'#rightblock_list_ul1');
             break;
         case "chat":
             dInfo = ParseChat(sTextList);
@@ -254,6 +289,8 @@ function ParseChat(sTextList){//解析聊天指令内容
     if(sTextList.length<=0) return null;
     var dInfo = {};
     var sNameandTime = sTextList.shift()
+    var sType = sTextList.shift()
+    dInfo["Type"] = sType
     tmpList = sNameandTime.split(' ');
     dInfo["UserName"]=tmpList[0]?tmpList[0]:"No Name";
     dInfo["Time"]=tmpList[1]?tmpList[1]:"";
