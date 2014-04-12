@@ -256,7 +256,7 @@ namespace TcpServer
             String sMsg = sm.Message;
             String[] splitString = sMsg.Split('&');
 			if (sm.MessageType == MSGTALK || sm.MessageType == MSGALL) { 
-				msg.AppendFormat ("chat\r\n{0} {1}\r\n", splitString[0], sm.Time.ToShortTimeString ());
+				msg.AppendFormat ("chat\r\n{0} {1}\r\n{2}\r\n", splitString[0], sm.Time.ToShortTimeString (),sm.MessageType);
 				msg.Append (splitString[1]);
 			} else if (sm.MessageType == MSGLOGIN){
                 String sName = splitString[1];
