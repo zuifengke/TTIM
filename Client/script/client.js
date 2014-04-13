@@ -89,6 +89,17 @@ function AddChatText(dInfo){//增加聊天记录
     }else{
         sTime +=":" + dateTime.getSeconds().toString();
     }
+    var iType = dInfo["Type"]
+    if (iType == '3'){
+        console.log(UserNameDict[sUserName])
+        if (!UserNameDict[sUserName])
+        {
+            AddContact(sUserName,'#rightblock_list_ul2')
+            UserNameDict[sUserName] = 1
+            $('#lasttalk').click()
+        }
+        sUserName = '私聊 ' + sUserName
+    }
     var sText = dInfo["Text"];
     $target.append(['<div class="chatshow">',
                     '<div class="chatshow_info"><p>&lt;',
@@ -99,19 +110,7 @@ function AddChatText(dInfo){//增加聊天记录
                     sText,
                     '</p></div>'
                 ].join(''));
-    $target.scrollTop(99999);
-
-    var iType = dInfo["Type"]
-    if (iType == '3'){
-        console.log(UserNameDict[sUserName])
-        if (!UserNameDict[sUserName])
-        {
-            AddContact(sUserName,'#rightblock_list_ul2')
-            UserNameDict[sUserName] = 1
-            $('#lasttalk').click()
-        }
-    }
-        
+    $target.scrollTop(99999);     
 }
 
 //增加联系人
