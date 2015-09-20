@@ -234,8 +234,8 @@ namespace TcpServer
             }
             else if (command == "all")
             {
-                String sText = splitString[1];
-                String sName = clientPool[key].NickName;
+                string sText = splitString[1];
+                string sName = clientPool[key].NickName;
                 String sMsg = String.Format("{0}&{1}", sName, sText);
                 foreach (KeyValuePair<Socket, ClientInfo> cs in clientPool)
                 {

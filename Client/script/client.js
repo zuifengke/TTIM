@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Created with JetBrains WebStorm.
  * User: XTT
  * Date: 14-2-9
@@ -304,10 +304,10 @@ function ParseChat(sTextList){//解析聊天指令内容
 function ConnectTest(){//websocket测试
     var bWebSocketsExist = true;
     try {
-        var dummy = new WebSocket("ws://localhost:8989/test");
+        var dummy = new WebSocket("ws://localhost:51888/test");
     } catch (ex) {
         try{
-            webSocket = new MozWebSocket("ws://localhost:8989/test");
+            webSocket = new MozWebSocket("ws://localhost:51888/test");
         } catch(ex) {
              bWebSocketsExist = false;
         }
