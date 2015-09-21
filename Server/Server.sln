@@ -28,6 +28,8 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Client", "..\Client\", "{83
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client.Winform", "..\Client.Winform\Client.Winform.csproj", "{6FFE47BB-5BC6-4BB5-8A13-CEEC6E64CD28}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chat.Test", "..\Chat.Test\Chat.Test.csproj", "{DC1EE45D-B539-4B47-9908-9D6A04730A62}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -46,6 +48,10 @@ Global
 		{6FFE47BB-5BC6-4BB5-8A13-CEEC6E64CD28}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6FFE47BB-5BC6-4BB5-8A13-CEEC6E64CD28}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6FFE47BB-5BC6-4BB5-8A13-CEEC6E64CD28}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC1EE45D-B539-4B47-9908-9D6A04730A62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC1EE45D-B539-4B47-9908-9D6A04730A62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC1EE45D-B539-4B47-9908-9D6A04730A62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC1EE45D-B539-4B47-9908-9D6A04730A62}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

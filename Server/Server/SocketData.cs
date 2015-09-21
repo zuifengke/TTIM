@@ -32,6 +32,7 @@ namespace ServerSocket
         }
 
         public bool IsHandShaked { get; set; }
+        
     }
 
     public class SocketMessage

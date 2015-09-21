@@ -38,6 +38,7 @@
             this.btnSend = new System.Windows.Forms.Button();
             this.listView1 = new System.Windows.Forms.ListView();
             this.label3 = new System.Windows.Forms.Label();
+            this.txtPort = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -53,9 +54,9 @@
             // 
             this.txtIP.Location = new System.Drawing.Point(97, 23);
             this.txtIP.Name = "txtIP";
-            this.txtIP.Size = new System.Drawing.Size(196, 21);
+            this.txtIP.Size = new System.Drawing.Size(143, 21);
             this.txtIP.TabIndex = 1;
-            this.txtIP.Text = "10.8.79.65:51888";
+            this.txtIP.Text = "10.8.79.65";
             // 
             // label2
             // 
@@ -81,6 +82,7 @@
             this.btnLogin.TabIndex = 3;
             this.btnLogin.Text = "登录";
             this.btnLogin.UseVisualStyleBackColor = true;
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // rtbMessage
             // 
@@ -124,6 +126,14 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "当前在线";
             // 
+            // txtPort
+            // 
+            this.txtPort.Location = new System.Drawing.Point(246, 23);
+            this.txtPort.Name = "txtPort";
+            this.txtPort.Size = new System.Drawing.Size(45, 21);
+            this.txtPort.TabIndex = 1;
+            this.txtPort.Text = "51888";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -136,6 +146,7 @@
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtName);
+            this.Controls.Add(this.txtPort);
             this.Controls.Add(this.txtIP);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
@@ -158,6 +169,7 @@
         private System.Windows.Forms.Button btnSend;
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtPort;
     }
 }
 
