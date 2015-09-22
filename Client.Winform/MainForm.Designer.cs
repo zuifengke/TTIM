@@ -39,6 +39,7 @@
             this.listView1 = new System.Windows.Forms.ListView();
             this.label3 = new System.Windows.Forms.Label();
             this.txtPort = new System.Windows.Forms.TextBox();
+            this.btnlogout = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -76,7 +77,7 @@
             // 
             // btnLogin
             // 
-            this.btnLogin.Location = new System.Drawing.Point(621, 21);
+            this.btnLogin.Location = new System.Drawing.Point(597, 21);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(75, 23);
             this.btnLogin.TabIndex = 3;
@@ -134,6 +135,17 @@
             this.txtPort.TabIndex = 1;
             this.txtPort.Text = "51888";
             // 
+            // btnlogout
+            // 
+            this.btnlogout.Location = new System.Drawing.Point(678, 21);
+            this.btnlogout.Name = "btnlogout";
+            this.btnlogout.Size = new System.Drawing.Size(75, 23);
+            this.btnlogout.TabIndex = 3;
+            this.btnlogout.Text = "退出";
+            this.btnlogout.UseVisualStyleBackColor = true;
+            this.btnlogout.Visible = false;
+            this.btnlogout.Click += new System.EventHandler(this.btnlogout_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -143,6 +155,7 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.rtbMessage);
             this.Controls.Add(this.btnSend);
+            this.Controls.Add(this.btnlogout);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtName);
@@ -152,6 +165,7 @@
             this.Controls.Add(this.label1);
             this.Name = "MainForm";
             this.Text = "主窗体";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -170,6 +184,7 @@
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtPort;
+        private System.Windows.Forms.Button btnlogout;
     }
 }
 

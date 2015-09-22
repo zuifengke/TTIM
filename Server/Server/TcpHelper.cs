@@ -140,6 +140,8 @@ namespace TcpServer
                     && !msg.Contains("logout")
                     && !msg.Contains("all"))
                     msg = ServerSocket.DataFrame.AnalyzeClientData(buffer, length);
+                if (string.IsNullOrEmpty(msg))
+                    return;
                 String[] splitString = msg.Split('&');
                 String Command = splitString[0];
                 Console.WriteLine("指令", Command);
@@ -165,7 +167,7 @@ namespace TcpServer
                         break;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 string szEx = ex.ToString();
                 //把客户端标记为关闭，并在clientPool中清除
@@ -206,7 +208,8 @@ namespace TcpServer
                 sm.Client = clientPool[client];
                 sm.Time = DateTime.Now;
                 byte[] byteMsg = PackageServerData(sm);
-                client.Send(byteMsg, byteMsg.Length, SocketFlags.None);
+                if (client.Connected)
+                    client.Send(byteMsg, byteMsg.Length, SocketFlags.None);
             }
         }
 
@@ -237,14 +240,19 @@ namespace TcpServer
             {
                 String sName = splitString[1];
                 String sMsg = String.Format("logout&{0}", sName);
+                System.Console.WriteLine(sMsg);
                 foreach (KeyValuePair<Socket, ClientInfo> cs in clientPool)
                 {
                     Socket client = cs.Key;
                     SendToClient(client, msg, MSGLOGOUT);
                 }
-                key.Disconnect(true);
-                Console.WriteLine("Client {0} disconnet", clientPool[key].Name);
-                clientPool.Remove(key);
+                if (key.Connected)
+                    key.Disconnect(true);
+                if (clientPool.ContainsKey(key))
+                {
+                    // Console.WriteLine("Client {0} disconnet", clientPool[key].Name);
+                    clientPool.Remove(key);
+                }
             }
             else if (command == "all")
             {
@@ -278,6 +286,7 @@ namespace TcpServer
             {
                 String sName = splitString[1];
                 msg.AppendFormat("login\r\n{0}", sName);
+
             }
             else if (sm.MessageType == MSGLOGOUT)
             {
@@ -287,9 +296,16 @@ namespace TcpServer
 
 
             byte[] content = null;
-            byte[] temp = Encoding.UTF8.GetBytes(msg.ToString());
             if (!sm.Client.IsHandShaked)
-                return temp;
+            {
+                //客户端为winform tcpip消息发生重叠，使用{进行分割}
+                if (sm.MessageType == MSGLOGIN )
+                    content = Encoding.UTF8.GetBytes("{" + msg.ToString() + "}");
+                else
+                    content= Encoding.UTF8.GetBytes( msg.ToString() );
+                return content;
+            }
+            byte[] temp = Encoding.UTF8.GetBytes(msg.ToString());
             if (temp.Length < 126)
             {
                 content = new byte[temp.Length + 2];
@@ -310,7 +326,7 @@ namespace TcpServer
             {
                 // 暂不处理超长内容  
             }
-           // Array.Copy(temp, 0, content, 4, temp.Length);
+            // Array.Copy(temp, 0, content, 4, temp.Length);
             return content;
         }
     }
