@@ -34,12 +34,19 @@
             this.txtName = new System.Windows.Forms.TextBox();
             this.btnLogin = new System.Windows.Forms.Button();
             this.rtbMessage = new System.Windows.Forms.RichTextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtMsg = new System.Windows.Forms.TextBox();
             this.btnSend = new System.Windows.Forms.Button();
             this.listView1 = new System.Windows.Forms.ListView();
-            this.label3 = new System.Windows.Forms.Label();
             this.txtPort = new System.Windows.Forms.TextBox();
             this.btnlogout = new System.Windows.Forms.Button();
+            this.lblTalkToTag = new System.Windows.Forms.Label();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.listView2 = new System.Windows.Forms.ListView();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -57,7 +64,7 @@
             this.txtIP.Name = "txtIP";
             this.txtIP.Size = new System.Drawing.Size(143, 21);
             this.txtIP.TabIndex = 1;
-            this.txtIP.Text = "10.8.79.65";
+            this.txtIP.Text = "10.8.79.71";
             // 
             // label2
             // 
@@ -87,18 +94,18 @@
             // 
             // rtbMessage
             // 
-            this.rtbMessage.Location = new System.Drawing.Point(30, 63);
+            this.rtbMessage.Location = new System.Drawing.Point(30, 78);
             this.rtbMessage.Name = "rtbMessage";
-            this.rtbMessage.Size = new System.Drawing.Size(520, 324);
+            this.rtbMessage.Size = new System.Drawing.Size(520, 309);
             this.rtbMessage.TabIndex = 4;
             this.rtbMessage.Text = "";
             // 
-            // textBox1
+            // txtMsg
             // 
-            this.textBox1.Location = new System.Drawing.Point(30, 393);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(440, 21);
-            this.textBox1.TabIndex = 5;
+            this.txtMsg.Location = new System.Drawing.Point(30, 393);
+            this.txtMsg.Name = "txtMsg";
+            this.txtMsg.Size = new System.Drawing.Size(440, 21);
+            this.txtMsg.TabIndex = 5;
             // 
             // btnSend
             // 
@@ -108,24 +115,19 @@
             this.btnSend.TabIndex = 3;
             this.btnSend.Text = "发送";
             this.btnSend.UseVisualStyleBackColor = true;
+            this.btnSend.Click += new System.EventHandler(this.btnSend_Click);
             // 
             // listView1
             // 
-            this.listView1.Location = new System.Drawing.Point(575, 78);
+            this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listView1.Location = new System.Drawing.Point(3, 3);
+            this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(189, 309);
+            this.listView1.Size = new System.Drawing.Size(205, 292);
             this.listView1.TabIndex = 6;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.List;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(573, 63);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(53, 12);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "当前在线";
+            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
             // txtPort
             // 
@@ -146,13 +148,66 @@
             this.btnlogout.Visible = false;
             this.btnlogout.Click += new System.EventHandler(this.btnlogout_Click);
             // 
+            // lblTalkToTag
+            // 
+            this.lblTalkToTag.AutoSize = true;
+            this.lblTalkToTag.Location = new System.Drawing.Point(38, 63);
+            this.lblTalkToTag.Name = "lblTalkToTag";
+            this.lblTalkToTag.Size = new System.Drawing.Size(113, 12);
+            this.lblTalkToTag.TabIndex = 0;
+            this.lblTalkToTag.Text = "您正在对所有人说：";
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Location = new System.Drawing.Point(556, 63);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(219, 324);
+            this.tabControl1.TabIndex = 7;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.listView1);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(211, 298);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "当前在线";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.listView2);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(211, 298);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "最近会话";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // listView2
+            // 
+            this.listView2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listView2.Location = new System.Drawing.Point(3, 3);
+            this.listView2.MultiSelect = false;
+            this.listView2.Name = "listView2";
+            this.listView2.Size = new System.Drawing.Size(205, 292);
+            this.listView2.TabIndex = 0;
+            this.listView2.UseCompatibleStateImageBehavior = false;
+            this.listView2.View = System.Windows.Forms.View.List;
+            // 
             // MainForm
             // 
+            this.AcceptButton = this.btnSend;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(776, 438);
-            this.Controls.Add(this.listView1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.txtMsg);
             this.Controls.Add(this.rtbMessage);
             this.Controls.Add(this.btnSend);
             this.Controls.Add(this.btnlogout);
@@ -161,11 +216,14 @@
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.txtPort);
             this.Controls.Add(this.txtIP);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.lblTalkToTag);
             this.Controls.Add(this.label1);
             this.Name = "MainForm";
             this.Text = "主窗体";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -179,12 +237,16 @@
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.RichTextBox rtbMessage;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtMsg;
         private System.Windows.Forms.Button btnSend;
         private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtPort;
         private System.Windows.Forms.Button btnlogout;
+        private System.Windows.Forms.Label lblTalkToTag;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.ListView listView2;
     }
 }
 
