@@ -135,6 +135,14 @@ namespace TcpServer
                     clientPool[client].IsHandShaked = true;
                     return;
                 }
+                if (!clientPool[client].IsHandShaked && msg.Contains("policy-file-request"))
+                {
+                    String policy = "<cross-domain-policy><allow-access-from domain=\"*\" to-ports=\"*\" /></cross-domain-policy>\0";
+                    buffer = System.Text.Encoding.UTF8.GetBytes(policy.ToCharArray());
+                    client.Send(buffer, buffer.Length, 0);
+                    clientPool[client].IsHandShaked = true;
+                    return;
+                }
                 if (!msg.Contains("login")
                     && !msg.Contains("talk")
                     && !msg.Contains("logout")
